@@ -3,14 +3,14 @@ import * as THREE from "three"
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import { Pane } from "tweakpane"
-import * as EssentialsPlugin from "@tweakpane/plugin-essentials"
+// import { Pane } from "tweakpane"
+// import * as EssentialsPlugin from "@tweakpane/plugin-essentials"
 
 /**
  * Debug
  */
-const pane = new Pane()
-pane.registerPlugin(EssentialsPlugin)
+// const pane = new Pane()
+// pane.registerPlugin(EssentialsPlugin)
 
 /**
  * Sizes
@@ -25,30 +25,30 @@ const parameters = {
   animate: false,
 }
 
-const pane_status = pane.addFolder({
-  title: "status",
-  expanded: false,
-})
+// const pane_status = pane.addFolder({
+//   title: "status",
+//   expanded: false,
+// })
 
-const fpsGraph = pane_status.addBlade({
-  view: "fpsgraph",
-})
+// const fpsGraph = pane_status.addBlade({
+//   view: "fpsgraph",
+// })
 
-pane_status
-  .addInput(parameters, "background", { label: "bg_color" })
-  .on("change", (color) => {
-    canvas.style.background = `radial-gradient(circle at 50%, ${color.value}, #65757c)`
-  })
-pane_status
-  .addButton({ title: parameters.animate ? "Pause" : "Play", label: "animate" })
-  .on("click", (event) => {
-    parameters.animate = !parameters.animate
-    if (parameters.animate) {
-      event.target.title = "Pause"
-    } else {
-      event.target.title = "Play"
-    }
-  })
+// pane_status
+//   .addInput(parameters, "background", { label: "bg_color" })
+//   .on("change", (color) => {
+//     canvas.style.background = `radial-gradient(circle at 50%, ${color.value}, #65757c)`
+//   })
+// pane_status
+//   .addButton({ title: parameters.animate ? "Pause" : "Play", label: "animate" })
+//   .on("click", (event) => {
+//     parameters.animate = !parameters.animate
+//     if (parameters.animate) {
+//       event.target.title = "Pause"
+//     } else {
+//       event.target.title = "Play"
+//     }
+//   })
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl")
@@ -62,19 +62,19 @@ const uniforms = {
   u_radius: { value: 1.0 },
 }
 
-pane_status.addInput(uniforms.u_time, "value", {
-  disabled: true,
-  label: "u_time",
-})
-pane_status.addInput(uniforms.u_mouse, "value", {
-  disabled: true,
-  label: "u_mouse",
-})
+// pane_status.addInput(uniforms.u_time, "value", {
+//   disabled: true,
+//   label: "u_time",
+// })
+// pane_status.addInput(uniforms.u_mouse, "value", {
+//   disabled: true,
+//   label: "u_mouse",
+// })
 
-const gui_shader = pane.addFolder({
-  title: "shader",
-  expanded: false,
-})
+// const gui_shader = pane.addFolder({
+//   title: "shader",
+//   expanded: false,
+// })
 
 /**
  * Loaders
@@ -157,7 +157,7 @@ window.addEventListener("mousemove", (event) => {
   // refresh pane on mousemove if animate is false
   if (!parameters.animate) {
     requestAnimationFrame(() => {
-      pane.refresh()
+      // pane.refresh()
     })
   }
 })
@@ -180,14 +180,14 @@ const clock = new THREE.Clock()
  * Animate
  */
 const tick = () => {
-  fpsGraph.begin()
+  // fpsGraph.begin()
 
   const delta = clock.getDelta()
 
   if (parameters.animate) {
     uniforms.u_time.value += delta
     // refresh pane on tick if animate is true
-    pane.refresh()
+    // pane.refresh()
   }
   // Update controls
   controls.update()
@@ -195,7 +195,7 @@ const tick = () => {
   // Render
   renderer.render(scene, camera)
 
-  fpsGraph.end()
+  // fpsGraph.end()
   // Call tick again on the next frame
   requestAnimationFrame(tick)
 }
