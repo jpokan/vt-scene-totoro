@@ -1,0 +1,19 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	overflow: hidden;
+}
+
+.webgl {
+	position: fixed;
+	top: 0;
+	left: 0;
+	outline: none;
+	background: radial-gradient(circle at 50%, #465372, #465372);
+	width: 100vw; /* Initial canvas width */
+	height: 100vh; /* Initial canvas width */
+}
